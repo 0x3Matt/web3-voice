@@ -1,5 +1,5 @@
 
-import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 
 interface DashboardLayoutProps {
@@ -12,7 +12,13 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
       <div className="min-h-screen flex w-full">
         <AppSidebar />
         <SidebarInset className="flex-1 overflow-auto">
-          <div className="p-4 sm:p-6 lg:p-8">
+          {/* Mobile header with menu button */}
+          <header className="flex h-12 items-center border-b border-border/40 px-4 md:hidden bg-background/80 backdrop-blur-sm sticky top-0 z-10">
+            <SidebarTrigger className="mr-2" />
+            <h1 className="text-lg font-semibold text-primary">Web3Voice</h1>
+          </header>
+          
+          <div className="p-3 sm:p-4 md:p-6 lg:p-8">
             {children}
           </div>
         </SidebarInset>
