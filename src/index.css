@@ -55,11 +55,25 @@
 
   body {
     @apply bg-background text-foreground font-sans;
+    font-size: 14px;
+  }
+
+  /* Mobile-first responsive text sizing */
+  @media (min-width: 640px) {
+    body {
+      font-size: 16px;
+    }
   }
 
   /* Custom scrollbar */
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
+  }
+
+  @media (min-width: 640px) {
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
   }
 
   ::-webkit-scrollbar-track {
@@ -73,16 +87,39 @@
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-primary/50;
   }
+
+  /* Touch-friendly sizing for mobile */
+  button, input, select, textarea {
+    min-height: 44px;
+  }
+
+  @media (min-width: 640px) {
+    button, input, select, textarea {
+      min-height: auto;
+    }
+  }
 }
 
 @layer components {
   /* Cyberpunk glow effects */
   .glow-primary {
-    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+    box-shadow: 0 0 15px hsl(var(--primary) / 0.2);
+  }
+
+  @media (min-width: 640px) {
+    .glow-primary {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+    }
   }
 
   .glow-secondary {
-    box-shadow: 0 0 15px hsl(var(--secondary) / 0.2);
+    box-shadow: 0 0 10px hsl(var(--secondary) / 0.15);
+  }
+
+  @media (min-width: 640px) {
+    .glow-secondary {
+      box-shadow: 0 0 15px hsl(var(--secondary) / 0.2);
+    }
   }
 
   /* Waveform animation */
@@ -95,21 +132,66 @@
     50% { transform: scaleY(1.5); }
   }
 
-  /* Grid background pattern */
+  /* Grid background pattern - responsive */
   .cyber-grid {
     background-image: 
       linear-gradient(rgba(255, 0, 51, 0.1) 1px, transparent 1px),
       linear-gradient(90deg, rgba(255, 0, 51, 0.1) 1px, transparent 1px);
-    background-size: 20px 20px;
+    background-size: 15px 15px;
   }
 
-  /* Token-style buttons */
+  @media (min-width: 640px) {
+    .cyber-grid {
+      background-size: 20px 20px;
+    }
+  }
+
+  /* Token-style buttons - responsive */
   .token-button {
-    @apply bg-gradient-to-r from-primary to-accent text-primary-foreground font-semibold rounded-lg px-6 py-3 transition-all duration-300 hover:shadow-lg hover:scale-105 glow-primary;
+    @apply bg-gradient-to-r from-primary to-accent text-primary-foreground font-semibold rounded-lg px-4 py-2 text-sm transition-all duration-300 hover:shadow-lg hover:scale-105 glow-primary;
   }
 
-  /* Card styling */
+  @media (min-width: 640px) {
+    .token-button {
+      @apply px-6 py-3 text-base;
+    }
+  }
+
+  /* Card styling - responsive */
   .cyber-card {
-    @apply bg-card/50 backdrop-blur-sm border border-primary/20 rounded-xl p-6 transition-all duration-300 hover:border-primary/40 hover:glow-primary;
+    @apply bg-card/50 backdrop-blur-sm border border-primary/20 rounded-xl p-4 transition-all duration-300 hover:border-primary/40 hover:glow-primary;
+  }
+
+  @media (min-width: 640px) {
+    .cyber-card {
+      @apply p-6;
+    }
+  }
+
+  /* Responsive utilities */
+  .text-responsive {
+    @apply text-sm;
+  }
+
+  @media (min-width: 640px) {
+    .text-responsive {
+      @apply text-base;
+    }
+  }
+
+  .heading-responsive {
+    @apply text-lg;
+  }
+
+  @media (min-width: 640px) {
+    .heading-responsive {
+      @apply text-xl;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .heading-responsive {
+      @apply text-2xl;
+    }
   }
 }

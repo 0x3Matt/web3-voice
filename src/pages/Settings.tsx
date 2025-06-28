@@ -1,291 +1,283 @@
 
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Wallet, Shield, Bell, User, Key, Coins, Settings as SettingsIcon } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { Wallet, Shield, Bell, Globe, User, Key, Download, Upload } from "lucide-react";
 
 const Settings = () => {
-  const walletInfo = {
-    address: "0x1234567890abcdef1234567890abcdef12345678",
-    balance: "45.6 VOICE",
-    usdValue: "$821.60",
-    connected: true
-  };
-
   return (
-    <div className="space-y-8">
-      <div className="flex justify-between items-center">
+    <div className="space-y-4 sm:space-y-6 lg:space-y-8 p-4 sm:p-6 lg:p-8">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             Settings
           </h1>
-          <p className="text-muted-foreground mt-2">
-            Manage your account, wallet, and preferences
+          <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base">
+            Manage your account and platform preferences
           </p>
         </div>
         
-        <Badge 
-          variant={walletInfo.connected ? "default" : "outline"} 
-          className={walletInfo.connected ? "bg-green-500/20 text-green-400 border-green-500/30" : ""}
-        >
-          {walletInfo.connected ? "Wallet Connected" : "Wallet Disconnected"}
-        </Badge>
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
+          <Button variant="outline" className="border-primary/30 text-xs sm:text-sm">
+            <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+            Export Data
+          </Button>
+          <Button className="token-button text-xs sm:text-sm">
+            <Upload className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+            Import Settings
+          </Button>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Wallet Settings */}
-        <Card className="cyber-card lg:col-span-2">
-          <div className="space-y-6">
-            <div className="flex items-center space-x-3">
-              <div className="p-2 bg-primary/20 rounded-lg">
-                <Wallet className="w-5 h-5 text-primary" />
-              </div>
-              <h2 className="text-xl font-semibold">Wallet & Payments</h2>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 bg-muted/20 rounded-lg">
-                <h3 className="font-medium mb-2">Connected Wallet</h3>
-                <p className="text-sm text-muted-foreground font-mono break-all">
-                  {walletInfo.address}
-                </p>
-                <div className="flex items-center justify-between mt-3">
-                  <div>
-                    <p className="font-semibold text-primary">{walletInfo.balance}</p>
-                    <p className="text-xs text-muted-foreground">{walletInfo.usdValue}</p>
-                  </div>
-                  <Button variant="outline" size="sm" className="border-primary/30">
-                    Disconnect
-                  </Button>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+        {/* Main Settings Column */}
+        <div className="lg:col-span-2 space-y-4 sm:space-y-6">
+          {/* Wallet & Identity */}
+          <Card className="cyber-card">
+            <div className="space-y-4 sm:space-y-6">
+              <div className="flex items-center space-x-3">
+                <div className="p-2 sm:p-3 bg-primary/20 rounded-lg glow-primary">
+                  <Wallet className="w-4 h-4 sm:w-6 sm:h-6 text-primary" />
                 </div>
+                <h2 className="text-lg sm:text-xl font-semibold">Wallet & Identity</h2>
               </div>
               
-              <div className="p-4 bg-muted/20 rounded-lg">
-                <h3 className="font-medium mb-2">Payment Preferences</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <Label htmlFor="auto-withdraw" className="text-sm">Auto-withdraw earnings</Label>
-                    <Switch id="auto-withdraw" />
+              <div className="space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-3 sm:p-4 bg-muted/20 rounded-lg">
+                  <div className="space-y-1">
+                    <p className="font-medium text-sm sm:text-base">Connected Wallet</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground font-mono">0x1234...5678</p>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <Label htmlFor="gas-optimization" className="text-sm">Gas optimization</Label>
-                    <Switch id="gas-optimization" defaultChecked />
+                  <div className="flex flex-col sm:flex-row gap-2">
+                    <Badge className="bg-green-500/20 text-green-400 text-xs">Connected</Badge>
+                    <Button size="sm" variant="outline" className="text-xs">
+                      Disconnect
+                    </Button>
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <Label className="text-xs sm:text-sm">ENS Name</Label>
+                    <Input placeholder="yourname.eth" className="bg-muted/30 text-xs sm:text-sm" />
+                  </div>
+                  <div>
+                    <Label className="text-xs sm:text-sm">Lens Handle</Label>
+                    <Input placeholder="@yourhandle" className="bg-muted/30 text-xs sm:text-sm" />
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </Card>
+          </Card>
 
-        {/* Quick Actions */}
-        <Card className="cyber-card">
-          <div className="space-y-4">
-            <h3 className="font-semibold">Quick Actions</h3>
-            <div className="space-y-2">
-              <Button variant="outline" className="w-full justify-start border-primary/30">
-                <Key className="w-4 h-4 mr-2" />
-                Export Private Key
-              </Button>
-              <Button variant="outline" className="w-full justify-start border-primary/30">
-                <Coins className="w-4 h-4 mr-2" />
-                View Transaction History
-              </Button>
-              <Button variant="outline" className="w-full justify-start border-primary/30">
-                <Shield className="w-4 h-4 mr-2" />
-                Security Settings
-              </Button>
+          {/* Security Settings */}
+          <Card className="cyber-card">
+            <div className="space-y-4 sm:space-y-6">
+              <div className="flex items-center space-x-3">
+                <div className="p-2 sm:p-3 bg-accent/20 rounded-lg">
+                  <Shield className="w-4 h-4 sm:w-6 sm:h-6 text-accent" />
+                </div>
+                <h2 className="text-lg sm:text-xl font-semibold">Security</h2>
+              </div>
+              
+              <div className="space-y-4 sm:space-y-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="space-y-1">
+                    <p className="font-medium text-sm sm:text-base">Two-Factor Authentication</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">Add an extra layer of security</p>
+                  </div>
+                  <Switch />
+                </div>
+                
+                <Separator />
+                
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="space-y-1">
+                    <p className="font-medium text-sm sm:text-base">AI Clone Protection</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">Prevent unauthorized voice cloning</p>
+                  </div>
+                  <Switch defaultChecked />
+                </div>
+                
+                <Separator />
+                
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="space-y-1">
+                    <p className="font-medium text-sm sm:text-base">Watermark Protection</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">Add invisible watermarks to uploads</p>
+                  </div>
+                  <Switch defaultChecked />
+                </div>
+              </div>
             </div>
-          </div>
-        </Card>
+          </Card>
+
+          {/* Privacy & Permissions */}
+          <Card className="cyber-card">
+            <div className="space-y-4 sm:space-y-6">
+              <div className="flex items-center space-x-3">
+                <div className="p-2 sm:p-3 bg-blue-500/20 rounded-lg">
+                  <User className="w-4 h-4 sm:w-6 sm:h-6 text-blue-400" />
+                </div>
+                <h2 className="text-lg sm:text-xl font-semibold">Privacy & Permissions</h2>
+              </div>
+              
+              <div className="space-y-4 sm:space-y-6">
+                <div>
+                  <Label className="text-xs sm:text-sm mb-2 block">Profile Visibility</Label>
+                  <Select>
+                    <SelectTrigger className="bg-muted/30">
+                      <SelectValue placeholder="Public" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="public">Public</SelectItem>
+                      <SelectItem value="friends">Friends Only</SelectItem>
+                      <SelectItem value="private">Private</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="space-y-1">
+                    <p className="font-medium text-sm sm:text-base">Analytics Tracking</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">Allow usage analytics collection</p>
+                  </div>
+                  <Switch defaultChecked />
+                </div>
+                
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="space-y-1">
+                    <p className="font-medium text-sm sm:text-base">Marketing Communications</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">Receive updates and promotions</p>
+                  </div>
+                  <Switch />
+                </div>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        {/* Sidebar Settings */}
+        <div className="space-y-4 sm:space-y-6">
+          {/* Notifications */}
+          <Card className="cyber-card">
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3">
+                <div className="p-2 bg-orange-500/20 rounded-lg">
+                  <Bell className="w-4 h-4 text-orange-400" />
+                </div>
+                <h3 className="text-base sm:text-lg font-semibold">Notifications</h3>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs sm:text-sm">New Purchases</span>
+                  <Switch defaultChecked />
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs sm:text-sm">DAO Votes</span>
+                  <Switch defaultChecked />
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs sm:text-sm">Royalty Payments</span>
+                  <Switch defaultChecked />
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs sm:text-sm">System Updates</span>
+                  <Switch />
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* Language & Region */}
+          <Card className="cyber-card">
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3">
+                <div className="p-2 bg-green-500/20 rounded-lg">
+                  <Globe className="w-4 h-4 text-green-400" />
+                </div>
+                <h3 className="text-base sm:text-lg font-semibold">Language & Region</h3>
+              </div>
+              
+              <div className="space-y-4">
+                <div>
+                  <Label className="text-xs sm:text-sm mb-2 block">Language</Label>
+                  <Select>
+                    <SelectTrigger className="bg-muted/30">
+                      <SelectValue placeholder="English" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="en">English</SelectItem>
+                      <SelectItem value="es">Spanish</SelectItem>
+                      <SelectItem value="fr">French</SelectItem>
+                      <SelectItem value="de">German</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div>
+                  <Label className="text-xs sm:text-sm mb-2 block">Currency</Label>
+                  <Select>
+                    <SelectTrigger className="bg-muted/30">
+                      <SelectValue placeholder="USD" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="usd">USD</SelectItem>
+                      <SelectItem value="eur">EUR</SelectItem>
+                      <SelectItem value="eth">ETH</SelectItem>
+                      <SelectItem value="voice">VOICE</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* API Keys */}
+          <Card className="cyber-card">
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3">
+                <div className="p-2 bg-purple-500/20 rounded-lg">
+                  <Key className="w-4 h-4 text-purple-400" />
+                </div>
+                <h3 className="text-base sm:text-lg font-semibold">API Access</h3>
+              </div>
+              
+              <div className="space-y-3">
+                <div className="p-3 bg-muted/20 rounded-lg">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div>
+                      <p className="font-medium text-xs sm:text-sm">Production Key</p>
+                      <p className="text-xs text-muted-foreground font-mono">vw3_prod_***</p>
+                    </div>
+                    <Button size="sm" variant="outline" className="text-xs">
+                      Regenerate
+                    </Button>
+                  </div>
+                </div>
+                
+                <Button size="sm" className="w-full bg-primary/20 text-primary hover:bg-primary/30 text-xs">
+                  Generate New Key
+                </Button>
+              </div>
+            </div>
+          </Card>
+        </div>
       </div>
 
-      {/* Profile Settings */}
-      <Card className="cyber-card">
-        <div className="space-y-6">
-          <div className="flex items-center space-x-3">
-            <div className="p-2 bg-accent/20 rounded-lg">
-              <User className="w-5 h-5 text-accent" />
-            </div>
-            <h2 className="text-xl font-semibold">Profile Settings</h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="display-name">Display Name</Label>
-                <Input 
-                  id="display-name" 
-                  placeholder="Voice Creator"
-                  className="bg-card/50 border-primary/20"
-                />
-              </div>
-              <div>
-                <Label htmlFor="bio">Bio</Label>
-                <Input 
-                  id="bio" 
-                  placeholder="Professional voice artist and content creator"
-                  className="bg-card/50 border-primary/20"
-                />
-              </div>
-              <div>
-                <Label htmlFor="website">Website</Label>
-                <Input 
-                  id="website" 
-                  placeholder="https://yourwebsite.com"
-                  className="bg-card/50 border-primary/20"
-                />
-              </div>
-            </div>
-            
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="ens-name">ENS Name</Label>
-                <Input 
-                  id="ens-name" 
-                  placeholder="yourname.eth"
-                  className="bg-card/50 border-primary/20"
-                />
-              </div>
-              <div>
-                <Label htmlFor="lens-handle">Lens Handle</Label>
-                <Input 
-                  id="lens-handle" 
-                  placeholder="@yourhandle.lens"
-                  className="bg-card/50 border-primary/20"
-                />
-              </div>
-              <div>
-                <Label htmlFor="location">Location</Label>
-                <Select>
-                  <SelectTrigger className="bg-card/50 border-primary/20">
-                    <SelectValue placeholder="Select your location" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="us">United States</SelectItem>
-                    <SelectItem value="uk">United Kingdom</SelectItem>
-                    <SelectItem value="ca">Canada</SelectItem>
-                    <SelectItem value="au">Australia</SelectItem>
-                    <SelectItem value="de">Germany</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Card>
-
-      {/* Privacy & Security */}
-      <Card className="cyber-card">
-        <div className="space-y-6">
-          <div className="flex items-center space-x-3">
-            <div className="p-2 bg-orange-500/20 rounded-lg">
-              <Shield className="w-5 h-5 text-orange-400" />
-            </div>
-            <h2 className="text-xl font-semibold">Privacy & Security</h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <h3 className="font-medium">AI Protection</h3>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="ai-fingerprint" className="text-sm">Enable AI fingerprinting</Label>
-                  <Switch id="ai-fingerprint" defaultChecked />
-                </div>
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="watermark" className="text-sm">Audio watermarking</Label>
-                  <Switch id="watermark" defaultChecked />
-                </div>
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="clone-protection" className="text-sm">Clone protection</Label>
-                  <Switch id="clone-protection" defaultChecked />
-                </div>
-              </div>
-            </div>
-            
-            <div className="space-y-4">
-              <h3 className="font-medium">Data Privacy</h3>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="analytics-sharing" className="text-sm">Share analytics data</Label>
-                  <Switch id="analytics-sharing" />
-                </div>
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="public-profile" className="text-sm">Public profile</Label>
-                  <Switch id="public-profile" defaultChecked />
-                </div>
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="activity-visibility" className="text-sm">Activity visibility</Label>
-                  <Switch id="activity-visibility" defaultChecked />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Card>
-
-      {/* Notifications */}
-      <Card className="cyber-card">
-        <div className="space-y-6">
-          <div className="flex items-center space-x-3">
-            <div className="p-2 bg-blue-500/20 rounded-lg">
-              <Bell className="w-5 h-5 text-blue-400" />
-            </div>
-            <h2 className="text-xl font-semibold">Notification Preferences</h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <h3 className="font-medium">NFT & Marketplace</h3>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="nft-sales" className="text-sm">NFT sales notifications</Label>
-                  <Switch id="nft-sales" defaultChecked />
-                </div>
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="bids" className="text-sm">New bids on your NFTs</Label>
-                  <Switch id="bids" defaultChecked />
-                </div>
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="price-drops" className="text-sm">Price drop alerts</Label>
-                  <Switch id="price-drops" />
-                </div>
-              </div>
-            </div>
-            
-            <div className="space-y-4">
-              <h3 className="font-medium">DAO & Governance</h3>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="dao-proposals" className="text-sm">New DAO proposals</Label>
-                  <Switch id="dao-proposals" defaultChecked />
-                </div>
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="voting-reminders" className="text-sm">Voting reminders</Label>
-                  <Switch id="voting-reminders" defaultChecked />
-                </div>
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="governance-updates" className="text-sm">Governance updates</Label>
-                  <Switch id="governance-updates" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Card>
-
-      {/* Save Changes */}
-      <div className="flex justify-end space-x-4">
-        <Button variant="outline" className="border-primary/30">
-          Reset to Defaults
-        </Button>
-        <Button className="token-button">
-          <SettingsIcon className="w-4 h-4 mr-2" />
+      {/* Save Changes Button */}
+      <div className="flex flex-col sm:flex-row gap-4 pt-4 sm:pt-6 border-t border-border/50">
+        <Button className="token-button flex-1 sm:flex-none">
           Save Changes
+        </Button>
+        <Button variant="outline" className="border-muted flex-1 sm:flex-none">
+          Reset to Defaults
         </Button>
       </div>
     </div>
