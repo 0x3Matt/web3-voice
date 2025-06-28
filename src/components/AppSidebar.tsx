@@ -4,7 +4,7 @@ import {
   BarChart,
   Mic,
   Wallet,
-  Marketplace,
+  ShoppingCart,
   TrendingUp,
   Users,
   Settings,
@@ -26,16 +26,17 @@ const navigation = [
   { title: "Dashboard", url: "/", icon: Home },
   { title: "Voice Vault", url: "/voice-vault", icon: Mic },
   { title: "Mint Studio", url: "/mint-studio", icon: Wallet },
-  { title: "Marketplace", url: "/marketplace", icon: Marketplace },
+  { title: "Marketplace", url: "/marketplace", icon: ShoppingCart },
   { title: "Analytics", url: "/analytics", icon: TrendingUp },
   { title: "DAOs & Collectives", url: "/daos", icon: Users },
   { title: "Settings", url: "/settings", icon: Settings },
 ];
 
 export function AppSidebar() {
-  const { collapsed } = useSidebar();
+  const { state } = useSidebar();
   const location = useLocation();
   const currentPath = location.pathname;
+  const collapsed = state === "collapsed";
 
   const isActive = (path: string) => {
     if (path === "/") return currentPath === "/";
@@ -50,7 +51,7 @@ export function AppSidebar() {
   return (
     <Sidebar
       className={`${collapsed ? "w-16" : "w-64"} transition-all duration-300 border-r border-sidebar-border bg-sidebar/95 backdrop-blur-xl`}
-      collapsible
+      collapsible="icon"
     >
       <SidebarContent className="p-4">
         {/* Logo/Brand */}

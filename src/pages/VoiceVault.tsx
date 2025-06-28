@@ -2,7 +2,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Upload, Mic, Play, Edit, Share, Mint } from "lucide-react";
+import { Upload, Mic, Play, Edit, Share, Coins } from "lucide-react";
 
 const VoiceVault = () => {
   const voiceFiles = [
@@ -127,7 +127,7 @@ const VoiceVault = () => {
                 
                 {file.category === "Draft" && (
                   <Button size="sm" className="bg-primary/20 text-primary hover:bg-primary/30">
-                    <Mint className="w-4 h-4 mr-1" />
+                    <Coins className="w-4 h-4 mr-1" />
                     Mint
                   </Button>
                 )}
