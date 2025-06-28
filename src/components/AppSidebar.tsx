@@ -1,4 +1,3 @@
-
 import { Home, Mic, Coins, ShoppingCart, BarChart, Users, Settings } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -37,7 +36,16 @@ export function AppSidebar() {
       <SidebarContent className="bg-sidebar">
         <SidebarGroup>
           <SidebarGroupLabel className="text-primary font-bold text-base sm:text-lg px-4 py-3">
-            {!isCollapsed && "Web3Voice"}
+            <div className="flex items-center space-x-2">
+              <img 
+                src="/favicon-32x32.png" 
+                alt="Web3Voice Logo" 
+                className="w-6 h-6 sm:w-7 sm:h-7 shrink-0" 
+              />
+              {!isCollapsed && (
+                <span className="truncate">Web3Voice</span>
+              )}
+            </div>
           </SidebarGroupLabel>
           
           <SidebarGroupContent>

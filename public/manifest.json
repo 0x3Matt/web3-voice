@@ -1,0 +1,36 @@
+{
+  "name": "Web3Voice - Tokenize Your Voice, Amplify Your Impact",
+  "short_name": "Web3Voice",
+  "description": "Transform your voice into valuable NFTs on the blockchain. Join the decentralized revolution where authentic voices are tokenized, validated, and rewarded.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#FF0033",
+  "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/web3-voice.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "finance", "music", "social"],
+  "lang": "en",
+  "orientation": "portrait-primary"
+} 
