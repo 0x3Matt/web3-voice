@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,6 +8,10 @@ import Dashboard from "./pages/Dashboard";
 import VoiceVault from "./pages/VoiceVault";
 import MintStudio from "./pages/MintStudio";
 import NotFound from "./pages/NotFound";
+import Marketplace from "./pages/Marketplace";
+import Analytics from "./pages/Analytics";
+import DAOs from "./pages/DAOs";
+import Settings from "./pages/Settings";
 
 const queryClient = new QueryClient();
 
@@ -23,10 +26,10 @@ const App = () => (
             <Route path="/" element={<Dashboard />} />
             <Route path="/voice-vault" element={<VoiceVault />} />
             <Route path="/mint-studio" element={<MintStudio />} />
-            <Route path="/marketplace" element={<div className="text-center py-12"><h2 className="text-2xl font-bold text-primary">Marketplace Coming Soon</h2></div>} />
-            <Route path="/analytics" element={<div className="text-center py-12"><h2 className="text-2xl font-bold text-primary">Analytics Coming Soon</h2></div>} />
-            <Route path="/daos" element={<div className="text-center py-12"><h2 className="text-2xl font-bold text-primary">DAOs & Collectives Coming Soon</h2></div>} />
-            <Route path="/settings" element={<div className="text-center py-12"><h2 className="text-2xl font-bold text-primary">Settings Coming Soon</h2></div>} />
+            <Route path="/marketplace" element={<Marketplace />} />
+            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/daos" element={<DAOs />} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </DashboardLayout>
