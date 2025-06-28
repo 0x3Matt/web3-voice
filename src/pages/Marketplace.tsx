@@ -200,7 +200,14 @@ const Marketplace = () => {
                     {nft.category}
                   </Badge>
                   <div className="text-right">
-                    <div className="font-bold text-primary">{nft.price}</div>
+                    <div className="font-bold text-primary flex items-center justify-end gap-1">
+                      <img 
+                        src="/web3-voice-coin.png" 
+                        alt="VOICE Token" 
+                        className="w-4 h-4"
+                      />
+                      {nft.price}
+                    </div>
                     <div className="text-xs text-muted-foreground">{nft.usdPrice}</div>
                   </div>
                 </div>
